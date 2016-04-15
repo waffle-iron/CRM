@@ -1,0 +1,24 @@
+{
+  "name": "vyrent",
+  "version": false,
+  "dependencies": {
+    "node-uuid": "registry:npm/node-uuid#1.4.0+20160224202522"
+  },
+  "ambientDependencies": {
+    "bluebird": "registry:dt/bluebird#2.0.0+20160319051630",
+    "bookshelf": "registry:dt/bookshelf#0.8.2+20160316155526",
+    "chai": "registry:dt/chai#3.4.0+20160317120654",
+    "express": "registry:dt/express#4.0.0+20160317120654",
+    "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160322035842",
+    "knex": "registry:dt/knex#0.0.0+20160330140516",
+    "lodash": "registry:dt/lodash#3.10.0+20160330154726",
+    "mime": "registry:dt/mime#0.0.0+20160316155526",
+    "mocha": "registry:dt/mocha#2.2.5+20160317120654",
+    "morgan": "registry:dt/morgan#1.2.2+20160317120654",
+    "node": "registry:dt/node#4.0.0+20160330064709",
+    "pg": "registry:dt/pg#0.0.0+20160323211726",
+    "serve-static": "registry:dt/serve-static#0.0.0+20160317120654",
+    "superagent": "registry:dt/superagent#1.4.0+20160317120654",
+    "supertest": "registry:dt/supertest#1.1.0+20160317120654"
+  }
+}

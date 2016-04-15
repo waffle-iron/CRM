@@ -1,0 +1,6 @@
+.idea
+.tscache
+node_modules
+typings
+js
+.baseDir.ts
