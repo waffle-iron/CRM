@@ -3,6 +3,6 @@ node_js:
     - "5"
 script:
     - grunt ts
-    - knex --knexfile js/knex/knexfile.js migrate:latest
+    - knex --knexfile js/knex/knexfile.js migrate:latest --env database
     - grunt mocha_istanbul
     - grunt coveralls
