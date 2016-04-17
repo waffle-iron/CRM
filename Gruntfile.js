@@ -18,16 +18,21 @@ module.exports = function(grunt) {
 
         mochaTest: {
             src: "js/test/**/*.js"
+        },
+        
+        coveralls:{
+            default:{
+                src: 'coverage/*.info'
+            }
+        },
+        
+        mocha_istanbul: {
+            default: {
+                src: "js/test/**/*.js"
+            }
         }
     });
 
-    grunt.registerTask("default", ["compile", "test"]);
-
-    grunt.registerTask("compile", ["ts"]);
-
-    grunt.registerTask("test", ["mochaTest"]);
-
-    grunt.registerTask("compileandtest", ["compile", "test"]);
-
+    grunt.registerTask("default", []);
 
 }

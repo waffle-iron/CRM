@@ -13,19 +13,23 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
     "grunt": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-coveralls": "^1.0.0",
+    "grunt-mocha-istanbul": "^4.0.2",
     "grunt-mocha-test": "^0.12.7",
     "grunt-ts": "^5.5.0-beta.2",
     "karma": "^0.13.22",
     "karma-mocha": "^0.2.2",
     "matchdep": "^1.0.1",
     "mocha": "^2.4.5",
+    "mocha-lcov-reporter": "^1.2.0",
     "supertest": "^1.2.0",
     "typings": "^0.7.12"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "grunt mochaTest",
     "postinstall": "node node_modules/typings/dist/bin.js install"
   },
   "author": "",
