@@ -1,9 +1,14 @@
 "use strict";
 var supertest = require("supertest");
 var server_1 = require("../app/server");
+var dotenv = require("dotenv");
+dotenv.config({
+    silent: true,
+    path: ".env"
+});
 describe("Server", function () {
-    var url = "http://localhost:5000";
-    var server = new server_1.Server(5000);
+    var url = "http://localhost:" + process.env.PORT;
+    var server = new server_1.Server(process.env.PORT);
     before(function () {
         server.start();
     });

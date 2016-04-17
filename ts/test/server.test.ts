@@ -3,10 +3,16 @@
 import * as chai from "chai"
 import * as supertest from "supertest"
 import {Server as WebServer} from "../app/server"
+import * as dotenv from "dotenv"
+
+dotenv.config({
+    silent: true,
+    path: ".env"
+});
 
 describe("Server", function() {
-    const url = "http://localhost:5000";
-    const server = new WebServer(5000);
+    const url = "http://localhost:"+process.env.PORT;
+    const server = new WebServer(process.env.PORT);
     before(function() {
         server.start();
     });

@@ -5,7 +5,7 @@ import * as dotenv from "dotenv"
 
 dotenv.config({silent: true});
 
-const server = new WebServer(5000);
+const server = new WebServer(process.env.PORT);
 server.setMiddlewares(morgan('combined'));
 
 server.start();
