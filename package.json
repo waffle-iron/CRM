@@ -15,19 +15,19 @@
     "morgan": "^1.7.0",
     "node-uuid": "^1.4.7",
     "pg": "^4.5.3",
-    "typings": "^0.7.12"
+    "typings": "^0.7.12",
+    "grunt": "^1.0.1",
+    "grunt-ts": "^5.5.0-beta.2",
+    "matchdep": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
-    "grunt": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-coveralls": "^1.0.0",
     "grunt-mocha-istanbul": "^4.0.2",
     "grunt-mocha-test": "^0.12.7",
-    "grunt-ts": "^5.5.0-beta.2",
     "istanbul": "^0.4.3",
-    "matchdep": "^1.0.1",
     "mocha": "^2.4.5",
     "mocha-lcov-reporter": "^1.2.0",
     "supertest": "^1.2.0"
@@ -36,8 +36,8 @@
     "test": "grunt mochaTest",
     "postinstall": "node node_modules/typings/dist/bin.js install",
     "start": "node js/app/index.js",
-    "heroku-prebuild": "npm install -g knex",
-    "heroku-postbuild": "knex --knexfile js/knex/knexfile.js migrate:latest --env database"
+    "heroku-prebuild": "npm install -g knex && npm install -g grunt-cli",
+    "heroku-postbuild": "knex --knexfile js/knex/knexfile.js migrate:latest --env database && grunt ts"
   },
   "author": "",
   "license": "ISC"
