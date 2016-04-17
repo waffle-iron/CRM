@@ -16,7 +16,7 @@
     "mime": "registry:dt/mime#0.0.0+20160316155526",
     "mocha": "registry:dt/mocha#2.2.5+20160317120654",
     "morgan": "registry:dt/morgan#1.2.2+20160317120654",
-    "node": "registry:dt/node#4.0.0+20160330064709",
+    "node": "registry:dt/node#4.0.0+20160412142033",
     "pg": "registry:dt/pg#0.0.0+20160323211726",
     "serve-static": "registry:dt/serve-static#0.0.0+20160317120654",
     "superagent": "registry:dt/superagent#1.4.0+20160317120654",
