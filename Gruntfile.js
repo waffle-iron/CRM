@@ -17,7 +17,9 @@ module.exports = function(grunt) {
         },
 
         mochaTest: {
-            src: "js/test/**/*.js"
+            default:{
+                src: "js/test/**/*.js"
+            }
         },
         
         coveralls:{

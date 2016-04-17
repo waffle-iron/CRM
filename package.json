@@ -2,7 +2,11 @@
   "name": "vyrent",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "js/app/index.js",
+  "repository": {
+        "type": "git",
+        "url": "https://github.com/vyrent/CRM.git"
+  },
   "dependencies": {
     "bookshelf": "^0.9.4",
     "express": "^4.13.4",
