@@ -8,6 +8,7 @@
     "bluebird": "registry:dt/bluebird#2.0.0+20160319051630",
     "bookshelf": "registry:dt/bookshelf#0.8.2+20160316155526",
     "chai": "registry:dt/chai#3.4.0+20160317120654",
+    "dotenv": "registry:dt/dotenv#2.0.0+20160327131627",
     "express": "registry:dt/express#4.0.0+20160317120654",
     "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160322035842",
     "knex": "registry:dt/knex#0.0.0+20160330140516",

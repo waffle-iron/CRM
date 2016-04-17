@@ -2,13 +2,14 @@
   "name": "vyrent",
   "version": "1.0.0",
   "description": "",
-  "main": "js/app/index.js",
+  "main": "vyrent-crm",
   "repository": {
-        "type": "git",
-        "url": "https://github.com/vyrent/CRM.git"
+    "type": "git",
+    "url": "https://github.com/vyrent/CRM.git"
   },
   "dependencies": {
     "bookshelf": "^0.9.4",
+    "dotenv": "^2.0.0",
     "express": "^4.13.4",
     "knex": "^0.10.0",
     "morgan": "^1.7.0",
@@ -33,7 +34,8 @@
   },
   "scripts": {
     "test": "grunt mochaTest",
-    "postinstall": "node node_modules/typings/dist/bin.js install"
+    "postinstall": "node node_modules/typings/dist/bin.js install",
+    "start": "node js/app/index.js"
   },
   "author": "",
   "license": "ISC"

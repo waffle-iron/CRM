@@ -1,11 +1,14 @@
 "use strict";
-var development = {
+var dotenv = require("dotenv");
+try {
+    dotenv.config();
+}
+catch (e) {
+    console.warn(e);
+}
+var database = {
     client: "pg",
-    connection: "postgres://postgres:amir@localhost/CRM"
+    conection: process.env.DATABASE_URL
 };
-exports.development = development;
-var staging = {};
-exports.staging = staging;
-var production = {};
-exports.production = production;
+exports.database = database;
 //# sourceMappingURL=knexfile.js.map

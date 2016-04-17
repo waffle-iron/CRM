@@ -5,3 +5,5 @@ typings
 .baseDir.ts
 .baseDir.js*
 coverage
+npm-debug.log
+.env

@@ -1,10 +1,15 @@
-let development = {
+import * as dotenv from "dotenv"
+
+try{
+    dotenv.config();
+}
+catch(e){
+    console.warn(e);
+}
+
+let database = {
     client: "pg",
-    connection: "postgres://postgres:amir@localhost/CRM"
+    conection: process.env.DATABASE_URL
 };
 
-let staging = {};
-
-let production = {};
-
-export {development, production, staging}
+export {database}
