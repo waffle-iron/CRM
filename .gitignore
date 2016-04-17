@@ -3,4 +3,5 @@
 node_modules
 typings
 .baseDir.ts
+.baseDir.js*
 coverage
