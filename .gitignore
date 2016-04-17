@@ -2,6 +2,5 @@
 .tscache
 node_modules
 typings
-js
 .baseDir.ts
 coverage
