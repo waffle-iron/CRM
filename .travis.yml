@@ -2,6 +2,7 @@ language: node_js
 node_js:
     - "5"
 script:
+    - knex --knexfile js/knex/knexfile.js migrate:latest
     - grunt ts
     - grunt mocha_istanbul
     - grunt coveralls

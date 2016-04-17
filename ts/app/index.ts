@@ -3,12 +3,7 @@ import * as morgan from "morgan";
 import {LeadController} from "./modules/lead/controller"
 import * as dotenv from "dotenv"
 
-try{
-    dotenv.config();
-}
-catch(e){
-    console.warn(e);
-}
+dotenv.config({silent: true});
 
 const server = new WebServer(5000);
 server.setMiddlewares(morgan('combined'));

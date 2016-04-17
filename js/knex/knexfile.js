@@ -1,14 +1,12 @@
 "use strict";
 var dotenv = require("dotenv");
-try {
-    dotenv.config();
-}
-catch (e) {
-    console.warn(e);
-}
+dotenv.config({
+    silent: true,
+    path: "../../.env"
+});
 var database = {
     client: "pg",
-    conection: process.env.DATABASE_URL
+    connection: process.env.DATABASE_URL
 };
 exports.database = database;
 //# sourceMappingURL=knexfile.js.map

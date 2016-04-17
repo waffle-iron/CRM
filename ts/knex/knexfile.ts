@@ -1,15 +1,13 @@
 import * as dotenv from "dotenv"
 
-try{
-    dotenv.config();
-}
-catch(e){
-    console.warn(e);
-}
+dotenv.config({
+    silent: true,
+    path: "../../.env"
+});
 
 let database = {
     client: "pg",
-    conection: process.env.DATABASE_URL
+    connection: process.env.DATABASE_URL
 };
 
 export {database}
