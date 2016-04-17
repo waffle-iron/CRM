@@ -35,7 +35,9 @@
   "scripts": {
     "test": "grunt mochaTest",
     "postinstall": "node node_modules/typings/dist/bin.js install",
-    "start": "node js/app/index.js"
+    "start": "node js/app/index.js",
+    "heroku-prebuild": "npm install -g knex",
+    "heroku-postbuild": "knex --knexfile js/knex/knexfile.js migrate:latest --env database"
   },
   "author": "",
   "license": "ISC"
