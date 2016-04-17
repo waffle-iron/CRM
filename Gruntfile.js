@@ -2,7 +2,7 @@
 
 module.exports = function(grunt) {
 
-    require("matchdep").filter("grunt-*").forEach(grunt.loadNpmTasks);
+    require("matchdep").filterAll("grunt-*").forEach(grunt.loadNpmTasks);
 
     grunt.initConfig({
 
