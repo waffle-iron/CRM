@@ -5,6 +5,7 @@ export class Server {
     private app: express.Express;
     private port: number;
     private server: http.Server;
+
     constructor(port: number) {
         this.port = port;
         this.app = express();
@@ -13,14 +14,13 @@ export class Server {
         router.get("/", (req, res) => {
             res.status(200).send("Hello Vyrent!");
         });
-        this.setApiRouter(router);
+        this.setApiRouter(router, "");
     }
 
     public start(): void {
-        this.server = this.app.listen(this.port, () => {
-        });
+        this.server = this.app.listen(this.port);
     }
-    
+
     public stop(): void {
         this.server.close();
     }
@@ -35,9 +35,7 @@ export class Server {
         this.app.use(address, router);
     }
 
-    public setApiRouter(...routers: express.Router[]): void {
-        routers.forEach((router: express.Router) => {
-            this.setRouter("/api", router);
-        });
+    public setApiRouter(router: express.Router, address: string): void {
+        this.setRouter("/api" + address, router);
     }
 }

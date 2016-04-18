@@ -6,6 +6,7 @@
   },
   "ambientDependencies": {
     "bluebird": "registry:dt/bluebird#2.0.0+20160319051630",
+    "body-parser": "registry:dt/body-parser#0.0.0+20160317120654",
     "bookshelf": "registry:dt/bookshelf#0.8.2+20160316155526",
     "chai": "registry:dt/chai#3.4.0+20160317120654",
     "dotenv": "registry:dt/dotenv#2.0.0+20160327131627",

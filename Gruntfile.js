@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     require("matchdep").filterAll("grunt-*").forEach(grunt.loadNpmTasks);
 
@@ -9,24 +9,24 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON("package.json"),
 
         ts: {
-            default:{
+            default: {
                 tsconfig: true,
                 fast: 'never'
             }
         },
 
         mochaTest: {
-            default:{
+            default: {
                 src: "js/test/**/*.js"
             }
         },
-        
-        coveralls:{
-            default:{
+
+        coveralls: {
+            default: {
                 src: 'coverage/*.info'
             }
         },
-        
+
         mocha_istanbul: {
             default: {
                 src: "js/test/**/*.js"
