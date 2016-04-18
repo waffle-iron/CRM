@@ -12,9 +12,9 @@ export class Server {
 
         const router = express.Router();
         router.get("/", (req, res) => {
-            res.status(200).send("Hello Vyrent!");
+            res.status(200).send("CRM API");
         });
-        this.setApiRouter(router, "");
+        this.setApiRouter("", router);
     }
 
     public start(): void {
@@ -35,7 +35,7 @@ export class Server {
         this.app.use(address, router);
     }
 
-    public setApiRouter(router: express.Router, address: string): void {
+    public setApiRouter(address: string, router: express.Router): void {
         this.setRouter("/api" + address, router);
     }
 }

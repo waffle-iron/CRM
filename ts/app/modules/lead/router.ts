@@ -1,5 +1,12 @@
+import * as jwt from "express-jwt";
 import * as express from "express";
-import {LeadController} from "./controller"
+import {LeadController} from "./controller";
+
+const jwtCheck = jwt({
+   secret: new Buffer(process.env.JWT_SECRET, 'base64'),
+   audience: process.env.JWT_AUDIENCE,
+   credentialsRequired: false
+});
 
 export class LeadRouter {
     private router: express.Router;
@@ -14,7 +21,7 @@ export class LeadRouter {
     }
 
     private setUpGetRoute() {
-        this.router.get("/", (req, res) => {
+        this.router.get("/", jwtCheck, (req, res) => {
             LeadController.getAllLeads()
                 .then((leads) => {
                     res.status(200).send(leads);
