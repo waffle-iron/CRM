@@ -13,6 +13,6 @@ server.setMiddlewares(morgan('combined'));
 server.setMiddlewares(bodyparser.json());
 
 const lead = new Lead();
-server.setApiRouter("/lead", lead.Router);
+server.setApiRouter("/leads", lead.Router);
 
 server.start();

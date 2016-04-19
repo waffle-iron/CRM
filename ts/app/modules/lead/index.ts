@@ -5,7 +5,7 @@ export class Lead {
     private leadRouter: LeadRouter;
     constructor() {
         this.leadRouter = new LeadRouter();
-        this.leadRouter.setupRoutes();
+        this.leadRouter.setUpRoutes();
     }
     get Router(): express.Router {
         return this.leadRouter.Router;

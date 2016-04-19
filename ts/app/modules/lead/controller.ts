@@ -41,4 +41,19 @@ export class LeadController {
                 })
         });
     }
+
+    public static getLead(leadId: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            new LeadModel({
+                "lead_id": leadId
+            })
+                .fetch()
+                .then((lead) => {
+                    resolve(lead);
+                })
+                .catch((err) => {
+                    reject(err);
+                })
+        });
+    }
 }

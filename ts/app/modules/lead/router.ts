@@ -3,9 +3,9 @@ import * as express from "express";
 import {LeadController} from "./controller";
 
 const jwtCheck = jwt({
-   secret: new Buffer(process.env.JWT_SECRET, 'base64'),
-   audience: process.env.JWT_AUDIENCE,
-   credentialsRequired: false
+    secret: new Buffer(process.env.JWT_SECRET, 'base64'),
+    audience: process.env.JWT_AUDIENCE,
+    credentialsRequired: false
 });
 
 export class LeadRouter {
@@ -15,12 +15,13 @@ export class LeadRouter {
         this.router = express.Router();
     }
 
-    public setupRoutes() {
+    public setUpRoutes() {
         this.setUpGetRoute();
+        this.setUpGetAllRoute();
         this.setUpPostRoute();
     }
 
-    private setUpGetRoute() {
+    private setUpGetAllRoute() {
         this.router.get("/", jwtCheck, (req, res) => {
             LeadController.getAllLeads()
                 .then((leads) => {
@@ -49,6 +50,19 @@ export class LeadRouter {
                 .catch((err) => {
                     console.log(err);
                     res.status(500).send(err);
+                })
+        });
+    }
+
+    private setUpGetRoute() {
+        this.router.get("/:leadId", (req, res) => {
+            const leadId = req.params.leadId;
+            LeadController.getLead(leadId)
+                .then((lead) => {
+                    res.status(200).send(lead);
+                })
+                .then((err) => {
+                    res.status(404).send(err);
                 })
         });
     }
