@@ -36,7 +36,7 @@
     "typings": "^0.8.1"
   },
   "scripts": {
-    "test": "grunt mochaTest",
+    "test": "node_modules/.bin/grunt mochaTest",
     "postinstall": "node_modules/.bin/typings install",
     "start": "node js/app/index.js",
     "heroku-postbuild": "node_modules/.bin/grunt ts && node_modules/.bin/knex --knexfile js/knex/knexfile.js migrate:latest --env database"
