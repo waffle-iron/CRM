@@ -38,4 +38,8 @@ export class Server {
     public setApiRouter(address: string, router: express.Router): void {
         this.setRouter("/api" + address, router);
     }
+    
+    get App(){
+        return this.app;
+    }
 }

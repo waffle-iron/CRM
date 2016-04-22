@@ -1,5 +1,6 @@
-import {LeadRouter} from "./router"
 import * as express from "express";
+
+import {LeadRouter} from "./router";
 
 export class Lead {
     private leadRouter: LeadRouter;

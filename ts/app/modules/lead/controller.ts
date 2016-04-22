@@ -1,6 +1,7 @@
-import {LeadModel, lead} from "./model";
 import * as uuid from "node-uuid";
 import * as Promise from "bluebird"
+
+import {LeadModel, lead} from "./model";
 
 export class LeadController {
     constructor() {
