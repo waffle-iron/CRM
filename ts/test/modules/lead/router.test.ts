@@ -4,6 +4,7 @@ import * as supertest from "supertest";
 import * as chai from "chai";
 
 dotenv.config({
+    silent: true,
     path: ".env"
 });
 
