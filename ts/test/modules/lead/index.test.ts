@@ -44,6 +44,22 @@ describe("Lead Module", function () {
 
     describe("CREATE LEAD", function () {
         let testLead: lead = createFakeLead();
+        
+        it("should be able to get all leads on GET /", function(done){
+            request
+                .get("/")
+                .accept("application/json")
+                .send()
+                .expect(200)
+                .end(function(err, res){
+                    if(err){
+                        throw err;
+                    }
+                    else{
+                        done();
+                    }
+                });
+        });
 
         it("should be able to create lead on POST /", function (done) {
             request
