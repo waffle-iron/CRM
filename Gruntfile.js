@@ -11,13 +11,13 @@ module.exports = function (grunt) {
         ts: {
             default: {
                 tsconfig: true,
-                fast: 'never'
+                fast: "never"
             }
         },
 
         coveralls: {
             default: {
-                src: 'coverage/*.info'
+                src: "coverage/*.info"
             }
         },
 
@@ -25,9 +25,13 @@ module.exports = function (grunt) {
             default: {
                 src: "js/test/**/*.js"
             }
-        }
+        },
+        
+        clean: ["js"]
+        
     });
 
     grunt.registerTask("default", []);
+    grunt.registerTask("compile", ["clean", "ts"]);
 
 }

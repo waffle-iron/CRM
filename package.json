@@ -24,6 +24,7 @@
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
     "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-coveralls": "^1.0.0",
     "grunt-mocha-istanbul": "^4.0.2",
@@ -38,7 +39,7 @@
     "test": "node_modules/.bin/grunt mocha_istanbul",
     "postinstall": "node_modules/.bin/typings install",
     "start": "node js/app/index.js",
-    "heroku-postbuild": "node_modules/.bin/grunt ts && node_modules/.bin/knex --knexfile js/knex/knexfile.js migrate:latest --env database"
+    "heroku-postbuild": "node_modules/.bin/grunt compile && node_modules/.bin/knex --knexfile js/knex/knexfile.js migrate:latest --env database"
   },
   "author": "",
   "license": "ISC"
