@@ -16,4 +16,3 @@ var down = function (knex) {
     return knex.schema.dropTable("leads");
 };
 exports.down = down;
-//# sourceMappingURL=20160409174520_createleadtable.js.map

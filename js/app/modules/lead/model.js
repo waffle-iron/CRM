@@ -34,4 +34,3 @@ var LeadModel = (function (_super) {
     return LeadModel;
 }(db_1.db.Model));
 exports.LeadModel = LeadModel;
-//# sourceMappingURL=model.js.map

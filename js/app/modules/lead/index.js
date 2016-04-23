@@ -15,4 +15,3 @@ var Lead = (function () {
     return Lead;
 }());
 exports.Lead = Lead;
-//# sourceMappingURL=index.js.map

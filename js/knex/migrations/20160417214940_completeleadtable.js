@@ -21,4 +21,3 @@ var down = function (knex) {
     });
 };
 exports.down = down;
-//# sourceMappingURL=20160417214940_completeleadtable.js.map

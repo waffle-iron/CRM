@@ -6,20 +6,16 @@ var LeadController = (function () {
     function LeadController() {
     }
     LeadController.createNewLead = function (lead) {
+        var _this = this;
         return new Promise(function (resolve, reject) {
+            lead.lead_id = uuid.v4();
             new model_1.LeadModel()
-                .save({
-                firstname: lead.firstname,
-                lastname: lead.lastname,
-                email: lead.email,
-                phone: lead.phone,
-                reason: lead.reason,
-                zipcode: lead.zipcode,
-                message: lead.message,
-                lead_id: uuid.v4()
-            })
+                .save(lead)
                 .then(function (lead) {
                 lead.timestamp();
+                return _this.getLead(lead.get("lead_id"));
+            })
+                .then(function (lead) {
                 resolve(lead);
             })
                 .catch(function (err) {
@@ -40,11 +36,49 @@ var LeadController = (function () {
         });
     };
     LeadController.getLead = function (leadId) {
+        var shadowLead = {
+            lead_id: leadId
+        };
         return new Promise(function (resolve, reject) {
-            new model_1.LeadModel({
-                "lead_id": leadId
+            new model_1.LeadModel(shadowLead)
+                .fetch({
+                require: true
             })
-                .fetch()
+                .then(function (lead) {
+                resolve(lead);
+            })
+                .catch(function (err) {
+                reject(err);
+            });
+        });
+    };
+    LeadController.updateLead = function (lead) {
+        var _this = this;
+        var shadowLead = {
+            lead_id: lead.lead_id
+        };
+        return new Promise(function (resolve, reject) {
+            new model_1.LeadModel(shadowLead)
+                .save(lead)
+                .then(function (lead) {
+                lead.timestamp();
+                return _this.getLead(lead.get("lead_id"));
+            })
+                .then(function (lead) {
+                resolve(lead);
+            })
+                .catch(function (err) {
+                reject(err);
+            });
+        });
+    };
+    LeadController.deleteLead = function (leadId) {
+        var shadowLead = {
+            lead_id: leadId
+        };
+        return new Promise(function (resolve, reject) {
+            new model_1.LeadModel(shadowLead)
+                .destroy()
                 .then(function (lead) {
                 resolve(lead);
             })
@@ -56,4 +90,3 @@ var LeadController = (function () {
     return LeadController;
 }());
 exports.LeadController = LeadController;
-//# sourceMappingURL=controller.js.map

@@ -27,7 +27,8 @@ export class LeadRouter {
 
     private setUpGetAllRoute() {
         this.router.get("/", jwtCheck, (req, res) => {
-            LeadController.getAllLeads()
+            LeadController
+                .getAllLeads()
                 .then((leads) => {
                     res.status(200).json(leads);
                 })
@@ -39,15 +40,8 @@ export class LeadRouter {
 
     private setUpPostRoute() {
         this.router.post("/", (req, res) => {
-            LeadController.createNewLead({
-                firstname: req.body.firstname,
-                lastname: req.body.lastname,
-                email: req.body.email,
-                phone: req.body.phone,
-                reason: req.body.reason,
-                zipcode: req.body.zipcode,
-                message: req.body.message
-            })
+            LeadController
+                .createNewLead(req.body)
                 .then((lead) => {
                     res.status(201).json(lead);
                 })
@@ -60,11 +54,12 @@ export class LeadRouter {
     private setUpGetRoute() {
         this.router.get("/:leadId", (req, res) => {
             const leadId = req.params.leadId;
-            LeadController.getLead(leadId)
+            LeadController
+                .getLead(leadId)
                 .then((lead) => {
                     res.status(200).json(lead);
                 })
-                .then((err) => {
+                .catch((err) => {
                     res.status(404).json(err);
                 })
         });
@@ -72,19 +67,45 @@ export class LeadRouter {
 
     private setUpPutRoute() {
         this.router.put("/:leadId", (req, res) => {
-            res.status(500).json({});
+            let lead = req.body;
+            lead.lead_id = req.params.leadId;
+            LeadController
+                .updateLead(lead)
+                .then((lead) => {
+                    res.status(200).json(lead);
+                })
+                .catch((err) => {
+                    res.status(500).json(err);
+                })
         });
     }
-    
+
     private setUpPatchRoute() {
         this.router.patch("/:leadId", (req, res) => {
-            res.status(500).json({});
+            let lead = req.body;
+            lead.lead_id = req.params.leadId;
+            LeadController
+                .updateLead(lead)
+                .then((lead) => {
+                    res.status(200).json(lead);
+                })
+                .catch((err) => {
+                    res.status(500).json(err);
+                })
         });
     }
-    
+
     private setUpDeleteRoute() {
         this.router.delete("/:leadId", (req, res) => {
-            res.status(500).json({});
+            let leadId = req.params.leadId;
+            LeadController
+                .deleteLead(leadId)
+                .then((lead) => {
+                    res.status(200).json(lead);
+                })
+                .catch((err) => {
+                    res.status(500).json(err);
+                })
         });
     }
 

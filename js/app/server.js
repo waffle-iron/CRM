@@ -1,15 +1,21 @@
 "use strict";
 var express = require("express");
+var morgan = require("morgan");
+var bodyparser = require("body-parser");
 var Server = (function () {
     function Server(port) {
         this.port = port;
         this.app = express();
+        this.setMiddlewares(bodyparser.json());
         var router = express.Router();
         router.get("/", function (req, res) {
             res.status(200).send("CRM API");
         });
         this.setApiRouter("", router);
     }
+    Server.prototype.turnOnLogger = function () {
+        this.setMiddlewares(morgan('combined'));
+    };
     Server.prototype.start = function () {
         this.server = this.app.listen(this.port);
     };
@@ -42,4 +48,3 @@ var Server = (function () {
     return Server;
 }());
 exports.Server = Server;
-//# sourceMappingURL=server.js.map

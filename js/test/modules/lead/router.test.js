@@ -15,7 +15,7 @@ describe("Lead Router", function () {
     app.use(router.Router);
     var request = supertest(app);
     describe("API OPTIONS", function () {
-        it("on / should implement GET, POST", function (done) {
+        it("should implement GET, POST on /", function (done) {
             request
                 .options("/")
                 .expect(200)
@@ -31,7 +31,7 @@ describe("Lead Router", function () {
                 }
             });
         });
-        it("on /id should implement GET, PUT, PATCH, DELETE", function (done) {
+        it("should implement GET, PUT, PATCH, DELETE on /", function (done) {
             request
                 .options("/id")
                 .expect(200)
@@ -51,4 +51,3 @@ describe("Lead Router", function () {
         });
     });
 });
-//# sourceMappingURL=router.test.js.map

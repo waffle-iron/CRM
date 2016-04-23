@@ -21,7 +21,8 @@ var LeadRouter = (function () {
     };
     LeadRouter.prototype.setUpGetAllRoute = function () {
         this.router.get("/", jwtCheck, function (req, res) {
-            controller_1.LeadController.getAllLeads()
+            controller_1.LeadController
+                .getAllLeads()
                 .then(function (leads) {
                 res.status(200).json(leads);
             })
@@ -32,15 +33,8 @@ var LeadRouter = (function () {
     };
     LeadRouter.prototype.setUpPostRoute = function () {
         this.router.post("/", function (req, res) {
-            controller_1.LeadController.createNewLead({
-                firstname: req.body.firstname,
-                lastname: req.body.lastname,
-                email: req.body.email,
-                phone: req.body.phone,
-                reason: req.body.reason,
-                zipcode: req.body.zipcode,
-                message: req.body.message
-            })
+            controller_1.LeadController
+                .createNewLead(req.body)
                 .then(function (lead) {
                 res.status(201).json(lead);
             })
@@ -52,28 +46,55 @@ var LeadRouter = (function () {
     LeadRouter.prototype.setUpGetRoute = function () {
         this.router.get("/:leadId", function (req, res) {
             var leadId = req.params.leadId;
-            controller_1.LeadController.getLead(leadId)
+            controller_1.LeadController
+                .getLead(leadId)
                 .then(function (lead) {
                 res.status(200).json(lead);
             })
-                .then(function (err) {
+                .catch(function (err) {
                 res.status(404).json(err);
             });
         });
     };
     LeadRouter.prototype.setUpPutRoute = function () {
         this.router.put("/:leadId", function (req, res) {
-            res.status(500).json({});
+            var lead = req.body;
+            lead.lead_id = req.params.leadId;
+            controller_1.LeadController
+                .updateLead(lead)
+                .then(function (lead) {
+                res.status(200).json(lead);
+            })
+                .catch(function (err) {
+                res.status(500).json(err);
+            });
         });
     };
     LeadRouter.prototype.setUpPatchRoute = function () {
         this.router.patch("/:leadId", function (req, res) {
-            res.status(500).json({});
+            var lead = req.body;
+            lead.lead_id = req.params.leadId;
+            controller_1.LeadController
+                .updateLead(lead)
+                .then(function (lead) {
+                res.status(200).json(lead);
+            })
+                .catch(function (err) {
+                res.status(500).json(err);
+            });
         });
     };
     LeadRouter.prototype.setUpDeleteRoute = function () {
         this.router.delete("/:leadId", function (req, res) {
-            res.status(500).json({});
+            var leadId = req.params.leadId;
+            controller_1.LeadController
+                .deleteLead(leadId)
+                .then(function (lead) {
+                res.status(200).json(lead);
+            })
+                .catch(function (err) {
+                res.status(500).json(err);
+            });
         });
     };
     Object.defineProperty(LeadRouter.prototype, "Router", {
@@ -86,4 +107,3 @@ var LeadRouter = (function () {
     return LeadRouter;
 }());
 exports.LeadRouter = LeadRouter;
-//# sourceMappingURL=router.js.map

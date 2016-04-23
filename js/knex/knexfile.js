@@ -9,4 +9,3 @@ var database = {
     connection: process.env.DATABASE_URL
 };
 exports.database = database;
-//# sourceMappingURL=knexfile.js.map

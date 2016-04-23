@@ -14,6 +14,7 @@
     "express-jwt": "registry:dt/express-jwt#0.0.0+20160319033732",
     "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160322035842",
     "express-unless": "registry:dt/express-unless#0.0.0+20160317120654",
+    "faker": "registry:dt/faker#0.0.0+20160406111603",
     "knex": "registry:dt/knex#0.0.0+20160330140516",
     "lodash": "registry:dt/lodash#3.10.0+20160330154726",
     "mime": "registry:dt/mime#0.0.0+20160316155526",

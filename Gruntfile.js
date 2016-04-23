@@ -11,7 +11,10 @@ module.exports = function (grunt) {
         ts: {
             default: {
                 tsconfig: true,
-                fast: "never"
+                options: {
+                    fast: "never",
+                    sourceMap: false
+                }
             }
         },
 
@@ -26,9 +29,9 @@ module.exports = function (grunt) {
                 src: "js/test/**/*.js"
             }
         },
-        
+
         clean: ["js"]
-        
+
     });
 
     grunt.registerTask("default", []);

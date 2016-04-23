@@ -1,5 +1,7 @@
 import * as express from "express";
 import * as http from "http";
+import * as morgan from "morgan";
+import * as bodyparser from "body-parser";
 
 export class Server {
     private app: express.Express;
@@ -9,12 +11,17 @@ export class Server {
     constructor(port: number) {
         this.port = port;
         this.app = express();
+        this.setMiddlewares(bodyparser.json());
 
         const router = express.Router();
         router.get("/", (req, res) => {
             res.status(200).send("CRM API");
         });
         this.setApiRouter("", router);
+    }
+    
+    public turnOnLogger(): void{
+        this.setMiddlewares(morgan('combined'));
     }
 
     public start(): void {
@@ -38,8 +45,8 @@ export class Server {
     public setApiRouter(address: string, router: express.Router): void {
         this.setRouter("/api" + address, router);
     }
-    
-    get App(){
+
+    get App() {
         return this.app;
     }
 }
