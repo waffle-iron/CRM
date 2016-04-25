@@ -44,10 +44,10 @@ var LeadRouter = (function () {
         });
     };
     LeadRouter.prototype.setUpGetRoute = function () {
-        this.router.get("/:leadId", function (req, res) {
-            var leadId = req.params.leadId;
+        this.router.get("/:id", function (req, res) {
+            var id = req.params.id;
             controller_1.LeadController
-                .getLead(leadId)
+                .getLead(id)
                 .then(function (lead) {
                 res.status(200).json(lead);
             })
@@ -57,9 +57,9 @@ var LeadRouter = (function () {
         });
     };
     LeadRouter.prototype.setUpPutRoute = function () {
-        this.router.put("/:leadId", function (req, res) {
+        this.router.put("/:id", function (req, res) {
             var lead = req.body;
-            lead.lead_id = req.params.leadId;
+            lead.id = req.params.id;
             controller_1.LeadController
                 .updateLead(lead)
                 .then(function (lead) {
@@ -71,9 +71,9 @@ var LeadRouter = (function () {
         });
     };
     LeadRouter.prototype.setUpPatchRoute = function () {
-        this.router.patch("/:leadId", function (req, res) {
+        this.router.patch("/:id", function (req, res) {
             var lead = req.body;
-            lead.lead_id = req.params.leadId;
+            lead.id = req.params.id;
             controller_1.LeadController
                 .updateLead(lead)
                 .then(function (lead) {
@@ -85,10 +85,10 @@ var LeadRouter = (function () {
         });
     };
     LeadRouter.prototype.setUpDeleteRoute = function () {
-        this.router.delete("/:leadId", function (req, res) {
-            var leadId = req.params.leadId;
+        this.router.delete("/:id", function (req, res) {
+            var id = req.params.id;
             controller_1.LeadController
-                .deleteLead(leadId)
+                .deleteLead(id)
                 .then(function (lead) {
                 res.status(200).json(lead);
             })

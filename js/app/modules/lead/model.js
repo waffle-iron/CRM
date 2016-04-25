@@ -4,7 +4,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var db_1 = require("../../db");
+var faker = require("faker");
+var Main = require("../../model");
+var model_1 = require("../reason/model");
 var LeadModel = (function (_super) {
     __extends(LeadModel, _super);
     function LeadModel() {
@@ -19,7 +21,7 @@ var LeadModel = (function (_super) {
     });
     Object.defineProperty(LeadModel.prototype, "idAttribute", {
         get: function () {
-            return "lead_id";
+            return "id";
         },
         enumerable: true,
         configurable: true
@@ -31,6 +33,53 @@ var LeadModel = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(LeadModel.prototype, "reason", {
+        get: function () {
+            return this.belongsTo(model_1.ReasonModel);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    LeadModel.check = function (lead) {
+        var valid = _super.check.call(this, lead);
+        if (valid &&
+            lead.firstname && lead.lastname &&
+            lead.email && lead.reason_id) {
+            return true;
+        }
+        return false;
+    };
+    LeadModel.parseIt = function (lead) {
+        var main = _super.parseIt.call(this, lead);
+        if (!this.check(lead)) {
+            throw "Cannot parse reason";
+        }
+        return {
+            id: main.id,
+            firstname: lead.firstname,
+            lastname: lead.lastname,
+            email: lead.email,
+            phone: lead.phone,
+            reason_id: lead.reason_id,
+            zipcode: lead.zipcode,
+            message: lead.message,
+            created_at: main.created_at,
+            updated_at: main.updated_at
+        };
+    };
+    LeadModel.createFake = function () {
+        var object = _super.createFake.call(this);
+        var reason = model_1.ReasonModel.createFake();
+        return {
+            id: object.id,
+            firstname: faker.name.firstName(),
+            lastname: faker.name.lastName(),
+            email: faker.internet.email(),
+            reason_id: reason.id,
+            created_at: object.created_at,
+            updated_at: object.updated_at
+        };
+    };
     return LeadModel;
-}(db_1.db.Model));
+}(Main.MainModel));
 exports.LeadModel = LeadModel;

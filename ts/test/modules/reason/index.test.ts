@@ -10,21 +10,21 @@ dotenv.config({
     path: ".env"
 });
 
-import {Lead} from "../../../app/modules/lead";
-import {LeadModel, lead} from "../../../app/modules/lead/model"
+import {Reason} from "../../../app/modules/reason";
+import {ReasonModel, reason} from "../../../app/modules/reason/model"
 
-describe("Lead Module", function () {
+
+describe("Reason Module", function () {
     const app: express.Application = express();
-    const lead: Lead = new Lead();
+    const reason: Reason = new Reason();
     app.use(bodyparser.json());
-    app.use(lead.Router);
+    app.use(reason.Router);
     const request: supertest.SuperTest = supertest(app);
 
-    describe("CREATE LEAD", function () {
-        let testLead: lead = LeadModel.createFake();
-        testLead.reason_id = "152cacc7-5890-427e-82e1-47b6b21d5d72";
+    describe("CREATE REASON", function () {
+        let testReason: reason = ReasonModel.createFake();
 
-        it("should be able to get all leads on GET /", function (done) {
+        it("should be able to get all reasons on GET /", function (done) {
             request
                 .get("/")
                 .accept("application/json")
@@ -40,30 +40,30 @@ describe("Lead Module", function () {
                 });
         });
 
-        it("should be able to create lead on POST /", function (done) {
+        it("should be able to create reason on POST /", function (done) {
             request
                 .post("/")
                 .type("application/json")
                 .accept("application/json")
-                .send(testLead)
+                .send(testReason)
                 .expect(201)
                 .end(function (err, res) {
                     if (err) {
                         throw err;
                     }
                     else {
-                        const lead: lead = LeadModel.parseIt(res.body);
-                        chai.expect(LeadModel.check(lead)).to.be.eql(true);
-                        testLead = lead;
-                        chai.expect(testLead.created_at.getTime()).to.be.equal(testLead.updated_at.getTime());
+                        const reason: reason = ReasonModel.parseIt(res.body);
+                        chai.expect(ReasonModel.check(reason)).to.be.equal(true);
+                        testReason = reason;
+                        chai.expect(testReason.created_at.getTime()).to.be.equal(testReason.updated_at.getTime());
                         done();
                     }
                 });
         });
 
-        it("should be able to get the created lead on GET /:id", function (done) {
+        it("should be able to get the created reason on GET /:id", function (done) {
             request
-                .get("/" + testLead.id)
+                .get("/" + testReason.id)
                 .accept("application/json")
                 .send()
                 .expect(200)
@@ -72,43 +72,42 @@ describe("Lead Module", function () {
                         throw err;
                     }
                     else {
-                        const lead: lead = LeadModel.parseIt(res.body);
-                        chai.expect(LeadModel.check(lead)).to.be.eql(true);
+                        const reason: reason = ReasonModel.parseIt(res.body);
+                        chai.expect(ReasonModel.check(reason)).to.be.equal(true);
                         done();
                     }
                 });
         });
 
-        it("should be able to update the whole created lead on put /:id", function (done) {
-            let updatedTestLead = LeadModel.createFake();
-            updatedTestLead.reason_id = testLead.reason_id;
+        it("should be able to update the whole created reason on put /:id", function (done) {
+            let updatedTestReason = ReasonModel.createFake();
             request
-                .put("/" + testLead.id)
+                .put("/" + testReason.id)
                 .accept("application/json")
                 .type("application/json")
-                .send(updatedTestLead)
+                .send(updatedTestReason)
                 .expect(200)
                 .end(function (err, res) {
                     if (err) {
                         throw err;
                     }
                     else {
-                        const lead: lead = LeadModel.parseIt(res.body);
-                        chai.expect(LeadModel.check(lead)).to.be.eql(true);
-                        chai.expect(lead.id).to.be.equal(testLead.id);
-                        testLead = lead;
-                        chai.expect(testLead.created_at.getTime()).to.be.below(testLead.updated_at.getTime());
+                        const reason: reason = ReasonModel.parseIt(res.body);
+                        chai.expect(ReasonModel.check(reason)).to.be.equal(true);
+                        chai.expect(reason.id).to.be.equal(testReason.id);
+                        testReason = reason;
+                        chai.expect(testReason.created_at.getTime()).to.be.below(testReason.updated_at.getTime());
                         done();
                     }
                 });
         });
 
-        it("should be able to update created lead partially on patch /:id", function (done) {
+        it("should be able to update created reason partially on patch /:id", function (done) {
             let toPatch = {
-                firstname: faker.name.firstName()
+                text: ReasonModel.createFake().text
             }
             request
-                .patch("/" + testLead.id)
+                .patch("/" + testReason.id)
                 .accept("application/json")
                 .type("application/json")
                 .send(toPatch)
@@ -118,22 +117,22 @@ describe("Lead Module", function () {
                         throw err;
                     }
                     else {
-                        const lead: lead = LeadModel.parseIt(res.body);
-                        chai.expect(LeadModel.check(lead)).to.be.eql(true);
-                        chai.expect(lead.id).to.be.equal(testLead.id);
-                        testLead.firstname = toPatch.firstname;
-                        testLead.updated_at = lead.updated_at;
-                        chai.expect(testLead).to.be.eql(lead);
-                        testLead = lead;
-                        chai.expect(testLead.created_at.getTime()).to.be.below(testLead.updated_at.getTime());
+                        const reason: reason = ReasonModel.parseIt(res.body);
+                        chai.expect(ReasonModel.check(reason)).to.be.equal(true);
+                        chai.expect(reason.id).to.be.equal(testReason.id);
+                        testReason.text = toPatch.text;
+                        testReason.updated_at = reason.updated_at;
+                        chai.expect(testReason).to.be.eql(reason);
+                        testReason = reason;
+                        chai.expect(testReason.created_at.getTime()).to.be.below(testReason.updated_at.getTime());
                         done();
                     }
                 });
         });
 
-        it("should be able to delete the lead on delete /:id", function (done) {
+        it("should be able to delete the reason on delete /:id", function (done) {
             request
-                .delete("/" + testLead.id)
+                .delete("/" + testReason.id)
                 .accept("application/json")
                 .send()
                 .expect(200)
@@ -147,9 +146,9 @@ describe("Lead Module", function () {
                 })
         });
 
-        it("should not be able to get the deleted lead on get /:id", function (done) {
+        it("should not be able to get the deleted reason on get /:id", function (done) {
             request
-                .get("/" + testLead.id)
+                .get("/" + testReason.id)
                 .accept("application/json")
                 .send()
                 .expect(404)

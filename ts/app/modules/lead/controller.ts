@@ -9,12 +9,12 @@ export class LeadController {
 
     public static createNewLead(lead: lead): Promise<any> {
         return new Promise((resolve, reject) => {
-            lead.lead_id = uuid.v4();
+            lead.id = uuid.v4();
             new LeadModel()
                 .save(lead)
                 .then((lead) => {
                     lead.timestamp();
-                    return this.getLead(lead.get("lead_id"));
+                    return this.getLead(lead.get("id"));
                 })
                 .then((lead)=>{
                     resolve(lead);
@@ -38,9 +38,9 @@ export class LeadController {
         });
     }
 
-    public static getLead(leadId: string): Promise<any> {
+    public static getLead(id: string): Promise<any> {
         let shadowLead = {
-            lead_id: leadId
+            id: id
         }
         return new Promise((resolve, reject) => {
             new LeadModel(shadowLead)
@@ -58,14 +58,14 @@ export class LeadController {
 
     public static updateLead(lead: lead): Promise<any> {
         let shadowLead = {
-            lead_id: lead.lead_id
+            id: lead.id
         };
         return new Promise((resolve, reject) => {
             new LeadModel(shadowLead)
                 .save(lead)
                 .then((lead) => {
                     lead.timestamp();
-                    return this.getLead(lead.get("lead_id"));
+                    return this.getLead(lead.get("id"));
                 })
                 .then((lead)=>{
                     resolve(lead)
@@ -76,9 +76,9 @@ export class LeadController {
         });
     }
 
-    public static deleteLead(leadId: string): Promise<any> {
+    public static deleteLead(id: string): Promise<any> {
         let shadowLead = {
-            lead_id: leadId
+            id: id
         };
         return new Promise((resolve, reject) => {
             new LeadModel(shadowLead)

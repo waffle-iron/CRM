@@ -8,12 +8,12 @@ var LeadController = (function () {
     LeadController.createNewLead = function (lead) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            lead.lead_id = uuid.v4();
+            lead.id = uuid.v4();
             new model_1.LeadModel()
                 .save(lead)
                 .then(function (lead) {
                 lead.timestamp();
-                return _this.getLead(lead.get("lead_id"));
+                return _this.getLead(lead.get("id"));
             })
                 .then(function (lead) {
                 resolve(lead);
@@ -35,9 +35,9 @@ var LeadController = (function () {
             });
         });
     };
-    LeadController.getLead = function (leadId) {
+    LeadController.getLead = function (id) {
         var shadowLead = {
-            lead_id: leadId
+            id: id
         };
         return new Promise(function (resolve, reject) {
             new model_1.LeadModel(shadowLead)
@@ -55,14 +55,14 @@ var LeadController = (function () {
     LeadController.updateLead = function (lead) {
         var _this = this;
         var shadowLead = {
-            lead_id: lead.lead_id
+            id: lead.id
         };
         return new Promise(function (resolve, reject) {
             new model_1.LeadModel(shadowLead)
                 .save(lead)
                 .then(function (lead) {
                 lead.timestamp();
-                return _this.getLead(lead.get("lead_id"));
+                return _this.getLead(lead.get("id"));
             })
                 .then(function (lead) {
                 resolve(lead);
@@ -72,9 +72,9 @@ var LeadController = (function () {
             });
         });
     };
-    LeadController.deleteLead = function (leadId) {
+    LeadController.deleteLead = function (id) {
         var shadowLead = {
-            lead_id: leadId
+            id: id
         };
         return new Promise(function (resolve, reject) {
             new model_1.LeadModel(shadowLead)
