@@ -1,5 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/lexiht/crm.png?label=ready&title=Ready)](https://waffle.io/lexiht/crm)
 [![Stories in Ready](https://badge.waffle.io/lexiht/crm.png?label=ready&title=Ready)](https://waffle.io/lexiht/crm)
+[![Stories in Ready](https://badge.waffle.io/lexiht/crm.png?label=ready&title=Ready)](https://waffle.io/lexiht/crm)
 [![Stories in Ready](https://badge.waffle.io/Vyrent/CRM.png?label=ready&title=Ready)](https://waffle.io/Vyrent/CRM)
 [![dependencies](https://david-dm.org/vyrent/crm.png)](https://david-dm.org/vyrent/crm)
 [![Build Status](https://travis-ci.org/Vyrent/CRM.svg?branch=master)](https://travis-ci.org/Vyrent/CRM)
